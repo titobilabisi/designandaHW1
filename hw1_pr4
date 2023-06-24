@@ -1,0 +1,30 @@
+def nextGreaterElement(nums1, nums2):
+    stack = []
+    next_greater = {}
+    
+    for num in nums2[::-1]:
+        while stack and stack[-1] <= num:
+            stack.pop()
+        
+        if stack:
+            next_greater[num] = stack[-1]
+        else:
+            next_greater[num] = -1
+        
+        stack.append(num)
+    
+    result = []
+    for num in nums1:
+        result.append(next_greater[num])
+    
+    return result
+
+# Get user input for nums1
+nums1 = input("Enter the elements of nums1 (space-separated): ").split()
+nums1 = [int(num) for num in nums1]
+
+# Get user input for nums2
+nums2 = input("Enter the elements of nums2 (space-separated): ").split()
+nums2 = [int(num) for num in nums2]
+
+print("Output:", nextGreaterElement(nums1, nums2))

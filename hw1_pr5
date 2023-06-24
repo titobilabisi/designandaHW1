@@ -1,0 +1,20 @@
+def buy_tickets(tickets, k):
+    n = len(tickets)
+    time = 0
+    line = tickets.copy()
+    position = k
+    remaining_tickets = tickets[k]
+    passes = 0
+
+    while remaining_tickets > 0:
+        for i in range(n):
+            time += 1
+            if line[i] > 0:
+                line[i] -= 1
+                if i == position:
+                    remaining_tickets -= 1
+            if i == n - 1:
+                passes += 1
+                line = [ticket + passes for ticket in line]
+
+    return time
